@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, useTrail, animated, config } from 'react-spring';
+import React from 'react';
+import { useSpring, animated, config } from 'react-spring';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import orange from '@material-ui/core/colors/orange';
@@ -43,19 +43,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header() {
   const classes = useStyles();
-  const [boxOn, setBoxOn] = useState(false);
-
-  useEffect(() => {
-    // setBoxOn(true)
-    console.log('MOUNTED');
-    return () => {
-      console.log('UNMOUNTED');
-    };
-  });
 
   return (
     <div className={classes.root}>
-      <HeaderBox boxOn={boxOn} />
+      <BoxAnimation />
       <div className={classes.introText}>
         <Typography variant='h1'>
           Hi, I'm <span>Benjamin</span>
@@ -66,7 +57,7 @@ export default function Header() {
   );
 }
 
-function HeaderBox({ boxOn }) {
+function BoxAnimation() {
   const props = useSpring({
     from: {
       left: '0%',
@@ -90,29 +81,21 @@ function HeaderBox({ boxOn }) {
         height: '10%',
         background: SMALL_COLOR
       });
-      while (boxOn) {
-        await next({ left: '0%', width: '100%', background: BIG_COLOR });
-        await next({ width: '10%', background: SMALL_COLOR });
-        await next({ top: '50%', height: '50%', background: BIG_COLOR });
-        await next({ height: '10%', background: SMALL_COLOR });
-        await next({ width: '100%', background: BIG_COLOR });
-        await next({ left: '90%', width: '10%', background: SMALL_COLOR });
-        await next({ top: '0%', height: '60%', background: BIG_COLOR });
-        await next({ height: '10%', background: SMALL_COLOR });
-        await next({ left: '0%', width: '100%', background: BIG_COLOR });
-        await next({ width: '10%', background: SMALL_COLOR });
-        await next({ height: '50%', background: BIG_COLOR });
-        await next({ top: '40%', height: '10%', background: SMALL_COLOR });
-        await next({ width: '100%', background: BIG_COLOR });
-        await next({ left: '90%', width: '10%', background: SMALL_COLOR });
-        await next({ height: '60%', width: '10%', background: BIG_COLOR });
-        await next({
-          left: '90%',
-          top: '90%',
-          height: '10%',
-          background: SMALL_COLOR
-        });
-      }
+      await next({ left: '0%', width: '100%', background: BIG_COLOR });
+      await next({ width: '10%', background: SMALL_COLOR });
+      await next({ top: '50%', height: '50%', background: BIG_COLOR });
+      await next({ height: '10%', background: SMALL_COLOR });
+      await next({ width: '100%', background: BIG_COLOR });
+      await next({ left: '90%', width: '10%', background: SMALL_COLOR });
+      await next({ top: '0%', height: '60%', background: BIG_COLOR });
+      await next({ height: '10%', background: SMALL_COLOR });
+      await next({ left: '0%', width: '100%', background: BIG_COLOR });
+      await next({ width: '10%', background: SMALL_COLOR });
+      await next({ height: '55%', background: BIG_COLOR });
+      await next({ top: '45%', height: '10%', background: SMALL_COLOR });
+      await next({ width: '55%', background: BIG_COLOR });
+      await next({ left: '45%', width: '10%', background: SMALL_COLOR });
+      await next({ left: '50%', top: '50%', width: '0%', height: '0%', background: FULL_COLOR });
     },
     config: config.slow
   });

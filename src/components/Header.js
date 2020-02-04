@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import orange from '@material-ui/core/colors/orange';
 
@@ -16,10 +17,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
-  },
-  box: {
-    position: 'absolute',
-    zIndex: 0
   },
   introText: {
     width: '100%',
@@ -38,6 +35,12 @@ const useStyles = makeStyles(theme => ({
       color: orange[600],
       fontWeight: 'bold'
     }
+  },
+  aboutButton: {
+    position: 'absolute',
+    top: '90%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
   }
 }));
 
@@ -46,12 +49,15 @@ export default function Header() {
 
   return (
     <div className={classes.root}>
-      <BoxAnimation />
+      {/* <BoxAnimation /> */}
       <div className={classes.introText}>
         <Typography variant='h1'>
           Hi, I'm <span>Benjamin</span>
         </Typography>
         <Typography variant='h4'>I like building web things</Typography>
+        <Button href='#about' className={classes.aboutButton}>
+          About
+        </Button>
       </div>
     </div>
   );

@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   aboutMe: {
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(8),
     display: 'flex',
     width: '100%',
@@ -106,78 +107,73 @@ export default function About() {
   const classes = useStyles();
 
   return (
-    <div id="about" className={classes.root}>
+    <div id='about' className={classes.root}>
       <div className={classes.aboutMe}>
-        <Avatar
-          alt="Benjamin Sinaiko"
-          src={avatarPhoto}
-          className={classes.avatar}
-        />
+        <Avatar alt='Benjamin Sinaiko' src={avatarPhoto} className={classes.avatar} />
         <div className={classes.about}>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant='h4' gutterBottom>
             A little about me
           </Typography>
-          <Typography variant="h5" color="textSecondary">
-            I’m a software developer, entrepreneur, and serial concertgoer. I’ve
-            founded Ven.u, an app to help my fellow Chicagoans find everything
-            they need to know about the best upcoming concerts in the area. I’m
-            looking to help the next business up its performance by tackling its
-            technological and software challenges.
+          <Typography variant='h5' color='textSecondary'>
+            I’m a software developer, entrepreneur, and serial concertgoer. I’ve founded Ven.u, an
+            app to help my fellow Chicagoans find everything they need to know about the best
+            upcoming concerts in the area. I’m looking to help the next business up its performance
+            by tackling its technological and software challenges.
           </Typography>
         </div>
       </div>
       <div className={classes.iconList}>
         <div className={classes.work}>
           <WorkIcon />
-          <Typography variant="caption">Work Experience</Typography>
+          <Typography variant='caption'>Work Experience</Typography>
           <List dense>
             <IconListItem
               logo={venuLogo}
-              primary="Ven.u - Live Music App"
-              secondary="Founder"
-              link="http://www.getvenu.com/"
+              primary='Ven.u - Live Music App'
+              secondary='Founder'
+              link='http://www.getvenu.com/'
             />
             <IconListItem
               logo={mercuriaLogo}
-              primary="Mercuria Energy"
-              secondary="Operations & Logistics"
-              link="http://mercuria.com/"
+              primary='Mercuria Energy'
+              secondary='Operations & Logistics'
+              link='http://mercuria.com/'
             />
           </List>
         </div>
         <div className={classes.education}>
           <SchoolIcon />
-          <Typography variant="caption">Education</Typography>
+          <Typography variant='caption'>Education</Typography>
           <List dense>
             <IconListItem
               logo={actualizeLogo}
-              primary="Actualize Coding Bootcamp"
-              secondary="Full Stack Web Development"
-              link="https://anyonecanlearntocode.com/"
+              primary='Actualize Coding Bootcamp'
+              secondary='Full Stack Web Development'
+              link='https://anyonecanlearntocode.com/'
             />
             <IconListItem
               logo={depaulLogo}
-              primary="DePaul University"
-              secondary="MBA - Finance | BS - Marketing"
-              link="https://www.depaul.edu/"
+              primary='DePaul University'
+              secondary='MBA - Finance | BS - Marketing'
+              link='https://www.depaul.edu/'
             />
           </List>
         </div>
         <div className={classes.affiliated}>
           <AffilateIcon />
-          <Typography variant="caption">Past Affiliations</Typography>
+          <Typography variant='caption'>Past Affiliations</Typography>
           <List dense>
             <IconListItem
               logo={logo2112}
-              primary="2112 Chicago - Member"
-              secondary="Music, Film, Tech Incubator"
-              link="https://2112inc.com/"
+              primary='2112 Chicago - Member'
+              secondary='Music, Film, Tech Incubator'
+              link='https://2112inc.com/'
             />
             <IconListItem
               logo={logo1871}
-              primary="1871 Chicago - Member"
-              secondary="Technology & Entrepreneurship Center"
-              link="https://1871.com/"
+              primary='1871 Chicago - Member'
+              secondary='Technology & Entrepreneurship Center'
+              link='https://1871.com/'
             />
           </List>
         </div>
@@ -188,10 +184,10 @@ export default function About() {
 
 function IconListItem({ logo, primary, secondary, link }) {
   return (
-    <ListItem button component="a" href={link} target="_blank">
+    <ListItem button component='a' href={link} target='_blank'>
       <ListItemAvatar>
         <Avatar>
-          <Avatar alt="company logo" src={logo} />
+          <Avatar alt='company logo' src={logo} />
         </Avatar>
       </ListItemAvatar>
       <ListItemText primary={primary} secondary={secondary} />

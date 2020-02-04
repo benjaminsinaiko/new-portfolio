@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import orange from '@material-ui/core/colors/orange';
 
+import scrollTo from '../helpers/scrollTo';
 const FULL_COLOR = orange[200];
 const BIG_COLOR = orange[300];
 const SMALL_COLOR = orange[900];
@@ -55,7 +56,7 @@ export default function Header() {
           Hi, I'm <span>Benjamin</span>
         </Typography>
         <Typography variant='h4'>I like building web things</Typography>
-        <Button href='#about' className={classes.aboutButton}>
+        <Button onClick={() => scrollTo('#about')} className={classes.aboutButton}>
           About
         </Button>
       </div>

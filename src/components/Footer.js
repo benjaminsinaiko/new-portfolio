@@ -81,10 +81,13 @@ const useStyles = makeStyles(theme => ({
   social: {
     backgroundColor: '#0f1726',
     width: '100%',
-    height: 80,
+    height: 120,
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      height: 80
+    }
   },
   name: {
     paddingLeft: theme.spacing(4),
@@ -134,14 +137,18 @@ export default function About() {
       <div className={classes.topShapeDiv}></div>
       <div className={classes.contact}>
         <div className={classes.title}>
-          <Typography variant='h2' align='center'>
+          <Typography variant="h2" align="center">
             Say hi!
           </Typography>
         </div>
         <div className={classes.email}>
-          <a href='mailto:bsinaiko@gmail.com' target='_blank' rel='noopener noreferrer'>
+          <a
+            href="mailto:bsinaiko@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <IconButton>
-              <i className='far fa-envelope'></i>
+              <i className="far fa-envelope"></i>
             </IconButton>
             <Button>bsinaiko@gmail.com</Button>
           </a>
@@ -150,26 +157,32 @@ export default function About() {
 
       <div className={classes.social}>
         <div className={classes.name}>
-          <Typography variant='subtitle2'>
+          <Typography variant="subtitle2">
             Benjamin Sinaiko{' '}
             <span>
-              <i className='fas fa-map-marker-alt'></i>
+              <i className="fas fa-map-marker-alt"></i>
             </span>{' '}
             Chicago
           </Typography>
         </div>
         <div className={classes.socialIcons}>
-          <IconButton target='_blank' href='https://www.linkedin.com/in/benjaminsinaiko/'>
-            <i className='fab fa-linkedin'></i>
+          <IconButton
+            target="_blank"
+            href="https://www.linkedin.com/in/benjaminsinaiko/"
+          >
+            <i className="fab fa-linkedin"></i>
           </IconButton>
-          <IconButton target='_blank' href='https://github.com/benjaminsinaiko/'>
-            <i className='fab fa-github'></i>
+          <IconButton
+            target="_blank"
+            href="https://github.com/benjaminsinaiko/"
+          >
+            <i className="fab fa-github"></i>
           </IconButton>
-          <IconButton target='_blank' href='https://twitter.com/huckabeej/'>
-            <i className='fab fa-twitter-square'></i>
+          <IconButton target="_blank" href="https://twitter.com/huckabeej/">
+            <i className="fab fa-twitter-square"></i>
           </IconButton>
-          <IconButton target='_blank' href='https://www.facebook.com/bsinaiko/'>
-            <i className='fab fa-facebook'></i>
+          <IconButton target="_blank" href="https://www.facebook.com/bsinaiko/">
+            <i className="fab fa-facebook"></i>
           </IconButton>
         </div>
       </div>

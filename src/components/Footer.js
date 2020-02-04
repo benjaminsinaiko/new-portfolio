@@ -136,7 +136,7 @@ export default function About() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div id='contact' className={classes.root}>
       <div className={classes.topShapeDiv}></div>
       <div className={classes.contact}>
         <div className={classes.title}>

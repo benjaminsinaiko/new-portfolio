@@ -49,7 +49,7 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div id='header' className={classes.root}>
       {/* <BoxAnimation /> */}
       <div className={classes.introText}>
         <Typography variant='h1'>

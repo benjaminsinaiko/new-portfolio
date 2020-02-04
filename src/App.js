@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NavBar from './components/NavBar';
 import Header from './components/Header';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -11,6 +12,7 @@ function App() {
         <Header />
       </header>
       <main>
+        <NavBar />
         <About />
       </main>
       <footer>

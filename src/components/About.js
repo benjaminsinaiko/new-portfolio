@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4),
-    minHeight: 400,
+    paddingTop: 78,
+    minHeight: 900,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -32,8 +33,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   aboutMe: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(8),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(8),
     display: 'flex',
     width: '100%',
     alignItems: 'center',
@@ -53,6 +54,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   about: {
+    paddingTop: theme.spacing(2),
     width: '50%',
     justifyContent: 'center',
     '& h4': {
@@ -65,11 +67,13 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       width: '95%',
       '& h5': {
-        fontSize: '1rem'
+        fontSize: '1.15rem'
       }
     }
   },
   iconList: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     width: '100%',
     display: 'flex',
     '& $work, & $education, & $affiliated': {

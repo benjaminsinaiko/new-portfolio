@@ -3,6 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import MailIcon from '@material-ui/icons/MailOutline';
+import LocationIcon from '@material-ui/icons/LocationOn';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import GithubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import FacebookIcon from '@material-ui/icons/Facebook';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import blueGray from '@material-ui/core/colors/blueGrey';
 
@@ -41,7 +47,7 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'column'
     },
     '& div:hover': {
-      '& i, span': {
+      '& svg, span': {
         color: '#fff'
       }
     }
@@ -63,17 +69,17 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    '& i': {
+    '& svg': {
       fontSize: '4rem'
     },
-    '& i, span': {
+    '& svg, span': {
       color: LIGHT_BLUE
     },
     '& a': {
       textDecoration: 'none'
     },
     [theme.breakpoints.down('xs')]: {
-      '& i': {
+      '& svg': {
         fontSize: '2.5rem'
       }
     }
@@ -92,29 +98,26 @@ const useStyles = makeStyles(theme => ({
   name: {
     paddingLeft: theme.spacing(4),
     color: BLUE_GREY,
-    '& i': {
+    '& svg': {
       color: LIGHT_BLUE
-    },
-    '& span': {
-      margin: theme.spacing(0.5)
     },
     [theme.breakpoints.down('xs')]: {
       paddingLeft: theme.spacing(2),
       '& h6': {
         fontSize: '.7rem'
       },
-      '& i': {
+      '& svg': {
         fontSize: '.8rem'
       }
     }
   },
   socialIcons: {
     paddingRight: theme.spacing(4),
-    '& i': {
+    '& svg': {
       fontSize: '1.5em',
       color: BLUE_GREY
     },
-    '& i:hover': {
+    '& svg:hover': {
       color: LIGHT_BLUE
     },
     [theme.breakpoints.down('xs')]: {
@@ -122,7 +125,7 @@ const useStyles = makeStyles(theme => ({
       '& button': {
         padding: theme.spacing(1)
       },
-      '& i': {
+      '& svg': {
         fontSize: '1.2rem'
       }
     }
@@ -137,18 +140,14 @@ export default function About() {
       <div className={classes.topShapeDiv}></div>
       <div className={classes.contact}>
         <div className={classes.title}>
-          <Typography variant="h2" align="center">
+          <Typography variant='h2' align='center'>
             Say hi!
           </Typography>
         </div>
         <div className={classes.email}>
-          <a
-            href="mailto:bsinaiko@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href='mailto:bsinaiko@gmail.com' target='_blank' rel='noopener noreferrer'>
             <IconButton>
-              <i className="far fa-envelope"></i>
+              <MailIcon />
             </IconButton>
             <Button>bsinaiko@gmail.com</Button>
           </a>
@@ -157,32 +156,26 @@ export default function About() {
 
       <div className={classes.social}>
         <div className={classes.name}>
-          <Typography variant="subtitle2">
+          <Typography variant='subtitle2'>
             Benjamin Sinaiko{' '}
             <span>
-              <i className="fas fa-map-marker-alt"></i>
+              <LocationIcon />
             </span>{' '}
             Chicago
           </Typography>
         </div>
         <div className={classes.socialIcons}>
-          <IconButton
-            target="_blank"
-            href="https://www.linkedin.com/in/benjaminsinaiko/"
-          >
-            <i className="fab fa-linkedin"></i>
+          <IconButton target='_blank' href='https://www.linkedin.com/in/benjaminsinaiko/'>
+            <LinkedInIcon />
           </IconButton>
-          <IconButton
-            target="_blank"
-            href="https://github.com/benjaminsinaiko/"
-          >
-            <i className="fab fa-github"></i>
+          <IconButton target='_blank' href='https://github.com/benjaminsinaiko/'>
+            <GithubIcon />
           </IconButton>
-          <IconButton target="_blank" href="https://twitter.com/huckabeej/">
-            <i className="fab fa-twitter-square"></i>
+          <IconButton target='_blank' href='https://twitter.com/huckabeej/'>
+            <TwitterIcon />
           </IconButton>
-          <IconButton target="_blank" href="https://www.facebook.com/bsinaiko/">
-            <i className="fab fa-facebook"></i>
+          <IconButton target='_blank' href='https://www.facebook.com/bsinaiko/'>
+            <FacebookIcon />
           </IconButton>
         </div>
       </div>

@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 
 import projectsData from '../data/projectsData';
@@ -19,9 +20,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: blueGrey[500],
     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%23282c34' fill-opacity='0.3'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E")`,
-    paddingTop: 64,
-    paddingBottom: 64,
-    minHeight: 750,
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+    minHeight: 800,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -36,7 +37,15 @@ const useStyles = makeStyles(theme => ({
     }
   },
   headerTitle: {
-    color: '#fff'
+    color: '#fff',
+    fontFamily: '"Open Sans", sans-serif',
+    fontSize: '4rem',
+    fontWeight: 'bold',
+    fontVariant: 'small-caps',
+    letterSpacing: '.1em',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2.4rem'
+    }
   },
   projectList: {
     margin: theme.spacing(4),
@@ -75,13 +84,14 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(2)
   },
   contentText: {
+    fontFamily: '"Open Sans", sans-serif',
     color: blueGrey[700],
     height: 60,
     '& p': {
       paddingBottom: 0
     },
     '& span': {
-      fontWeight: 500
+      fontWeight: 'bold'
     }
   },
   actionLinks: {
@@ -91,7 +101,11 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    '& a': {
+      color: lightBlue[400],
+      fontWeight: 'bold'
+    }
   },
   overlay: {
     position: 'absolute',
@@ -102,7 +116,7 @@ const useStyles = makeStyles(theme => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     '-ms-transform': 'translate(-50%, -50%)',
-    transition: '.5s ease'
+    transition: '.6s ease'
   },
   overlayContainer: {
     width: '100%',
@@ -119,22 +133,36 @@ const useStyles = makeStyles(theme => ({
     height: '15%',
     paddingTop: theme.spacing(2),
     color: blueGrey[800],
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    letterSpacing: '.1em'
   },
   overlayText: {
-    height: '40%',
+    height: '45%',
+    '& h6': {
+      color: blueGrey[700],
+      fontWeight: 'bold',
+      fontVariant: 'small-caps'
+    },
     '& p': {
+      fontFamily: '"Open Sans", sans-serif',
+      color: blueGrey[800],
       fontWeight: 600
     }
   },
   overlayPackages: {
-    height: '45%',
+    height: '40%',
     alignSelf: 'flex-start',
+    '& h6': {
+      fontVariant: 'small-caps'
+    },
     '& ul, li': {
       padding: 0
     },
     '& li': {
-      fontWeight: 500
+      fontWeight: 500,
+      '& span': {
+        fontFamily: '"Open Sans", sans-serif'
+      }
     }
   }
 }));
@@ -186,20 +214,20 @@ function ProjectCard({
               {projectName}
             </Typography>
             <div className={classes.overlayText}>
-              <Typography color='secondary' align='center' gutterBottom>
+              <Typography variant='subtitle1' align='center' gutterBottom>
                 {techUsed}
               </Typography>
-              <Typography variant='body1' color='secondary'>
-                {techDescription}
-              </Typography>
+              <Typography variant='body1'>{techDescription}</Typography>
             </div>
             <div className={classes.overlayPackages}>
-              <Typography variant='subtitle2'>Packages used: </Typography>
+              <Typography variant='subtitle2'>other packages: </Typography>
               <List dense>
                 {packages.length &&
                   packages.map(packageName => (
                     <ListItem key={packageName}>
-                      <Typography variant='caption'>{packageName}</Typography>
+                      <Typography color='secondary' variant='caption'>
+                        {packageName}
+                      </Typography>
                     </ListItem>
                   ))}
               </List>
@@ -217,10 +245,10 @@ function ProjectCard({
         </Typography>
       </CardContent>
       <CardActions className={classes.actionLinks}>
-        <Button color='primary' href={siteLink} target='_blank' startIcon={<OpenInBrowserIcon />}>
+        <Button href={siteLink} target='_blank' startIcon={<OpenInBrowserIcon />}>
           Live Site
         </Button>
-        <Button color='primary' href={repoLink} target='_blank' startIcon={<GitHubIcon />}>
+        <Button href={repoLink} target='_blank' startIcon={<GitHubIcon />}>
           Code Repo
         </Button>
       </CardActions>

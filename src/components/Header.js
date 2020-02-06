@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: 'calc(2em + 3vw)'
     },
     '& h4': {
-      fontSize: 'calc(1em + 2vw)'
+      fontSize: 'calc(1em + 1.25vw)',
+      fontFamily: '"Open Sans", sans-serif'
     },
     '& span': {
       color: orange[600],

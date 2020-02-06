@@ -73,11 +73,11 @@ export default function NavBar() {
           </div>
 
           <div className={classes.sections}>
+            <Typography href='#projects' component='a' variant='h6' className={classes.links}>
+              Projects
+            </Typography>
             <Typography href='#about' component='a' variant='h6' className={classes.links}>
               About
-            </Typography>
-            <Typography href='#contact' component='a' variant='h6' className={classes.links}>
-              Projects
             </Typography>
             <Typography href='#contact' component='a' variant='h6' className={classes.links}>
               Contact

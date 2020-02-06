@@ -12,12 +12,12 @@ import AffilateIcon from '@material-ui/icons/GroupWork';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 
 import avatarPhoto from '../img/benjamin.jpg';
-import mercuriaLogo from '../img/mercuriaLogo.jpg';
-import venuLogo from '../img/venuLogo.png';
-import actualizeLogo from '../img/actualizeLogo.jpg';
-import depaulLogo from '../img/depaulLogo.jpg';
-import logo2112 from '../img/2112Logo.jpg';
-import logo1871 from '../img/1871Logo.jpg';
+import mercuriaLogo from '../img/aboutLogos/mercuriaLogo.jpg';
+import venuLogo from '../img/aboutLogos/venuLogo.png';
+import actualizeLogo from '../img/aboutLogos/actualizeLogo.jpg';
+import depaulLogo from '../img/aboutLogos/depaulLogo.jpg';
+import logo2112 from '../img/aboutLogos/2112Logo.jpg';
+import logo1871 from '../img/aboutLogos/1871Logo.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {

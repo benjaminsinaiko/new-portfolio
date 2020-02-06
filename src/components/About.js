@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 import Avatar from '@material-ui/core/Avatar';
+import PDFIcon from '@material-ui/icons/PictureAsPdf';
+import DescriptionIcon from '@material-ui/icons/Description';
 import WorkIcon from '@material-ui/icons/Work';
 import SchoolIcon from '@material-ui/icons/School';
 import AffilateIcon from '@material-ui/icons/GroupWork';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 
 import avatarPhoto from '../img/benjamin.jpg';
 import mercuriaLogo from '../img/aboutLogos/mercuriaLogo.jpg';
@@ -58,9 +65,10 @@ const useStyles = makeStyles(theme => ({
     width: '50%',
     justifyContent: 'center',
     '& h4': {
-      color: blueGrey[500]
+      color: blueGrey[500],
+      fontFamily: '"Open sans", sans-serif'
     },
-    '& h5': {
+    '& p': {
       textAlign: 'justify',
       fontSize: '1.2rem'
     },
@@ -70,6 +78,24 @@ const useStyles = makeStyles(theme => ({
         fontSize: '1.15rem'
       }
     }
+  },
+  resumeSection: {
+    marginTop: theme.spacing(3)
+  },
+  resumeBtn: {
+    color: lightBlue[600],
+    border: `1px solid ${lightBlue[600]}`
+  },
+  modalContent: {
+    height: '85vh',
+    padding: 0,
+    [theme.breakpoints.down('xs')]: {
+      height: '80vh'
+    }
+  },
+  iframe: {
+    width: '100%',
+    height: '100%'
   },
   iconList: {
     paddingTop: theme.spacing(2),
@@ -118,14 +144,19 @@ export default function About() {
           <Typography variant='h4' gutterBottom>
             A little about me
           </Typography>
-          <Typography variant='h5' color='textSecondary'>
+          <Typography variant='body1' color='textSecondary'>
             I’m a software developer, entrepreneur, and serial concertgoer. I’ve founded Ven.u, an
             app to help my fellow Chicagoans find everything they need to know about the best
             upcoming concerts in the area. I’m looking to help the next business up its performance
             by tackling its technological and software challenges.
           </Typography>
+
+          <div className={classes.resumeSection}>
+            <ResumeModal />
+          </div>
         </div>
       </div>
+
       <div className={classes.iconList}>
         <div className={classes.work}>
           <WorkIcon />
@@ -196,5 +227,64 @@ function IconListItem({ logo, primary, secondary, link }) {
       </ListItemAvatar>
       <ListItemText primary={primary} secondary={secondary} />
     </ListItem>
+  );
+}
+
+function ResumeModal() {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button
+        onClick={handleOpen}
+        variant='outlined'
+        size='large'
+        className={classes.resumeBtn}
+        startIcon={<DescriptionIcon />}
+      >
+        View Resume
+      </Button>
+      <Dialog
+        fullWidth
+        maxWidth={'md'}
+        open={open}
+        onClose={handleClose}
+        scroll='paper'
+        aria-labelledby='resume view'
+        aria-describedby='resume scroll view'
+      >
+        <DialogContent className={classes.modalContent}>
+          <iframe
+            className={classes.iframe}
+            title='resume'
+            src='https://docs.google.com/document/d/e/2PACX-1vRcwDh5jr2kyegqyAFw-L7-pbSkScm-_nypwWvQRUarhGokKYQ04Xw784IdNtlc9RGn2F1dTs_7MN9i/pub?embedded=true'
+            style={{ padding: 0, border: 'none' }}
+          ></iframe>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color='primary'>
+            Close
+          </Button>
+          <Button
+            disabled
+            variant='contained'
+            onClick={handleClose}
+            color='primary'
+            startIcon={<PDFIcon />}
+          >
+            Download
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 }

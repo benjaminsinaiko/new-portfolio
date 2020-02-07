@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import blueGray from '@material-ui/core/colors/blueGrey';
 
+import scrollTo from '../utils/scrollTo';
 import initialsImg from '../img/initialsImg.png';
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     },
     '& a': {
       textDecoration: 'none',
-      color: blueGray[500]
+      color: blueGray[500],
+      cursor: 'pointer'
     }
   },
   toolbar: {
@@ -27,10 +29,14 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  menuButton: {
+  titleWrapper: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  titleButton: {
     marginRight: theme.spacing(2)
   },
-  title: {
+  titleName: {
     flexGrow: 1,
     [theme.breakpoints.down('xs')]: {
       display: 'none'
@@ -51,6 +57,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const scrollToElement = el => () => {
+  scrollTo(el);
+};
+
 export default function NavBar() {
   const classes = useStyles();
 
@@ -58,28 +68,44 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar className={classes.toolbar}>
-          <div>
+          <div onClick={scrollToElement('#header')} className={classes.titleWrapper}>
             <IconButton
+              component='a'
               edge='start'
-              className={classes.menuButton}
+              className={classes.titleButton}
               color='inherit'
               aria-label='menu'
             >
               <img src={initialsImg} alt='' />
             </IconButton>
-            <Typography href='#header' component='a' variant='h6' className={classes.title}>
+            <Typography component='a' variant='h6' className={classes.titleName}>
               Benjamin Sinaiko
             </Typography>
           </div>
 
           <div className={classes.sections}>
-            <Typography href='#projects' component='a' variant='h6' className={classes.links}>
+            <Typography
+              onClick={scrollToElement('#projects')}
+              component='a'
+              variant='h6'
+              className={classes.links}
+            >
               Projects
             </Typography>
-            <Typography href='#about' component='a' variant='h6' className={classes.links}>
+            <Typography
+              onClick={scrollToElement('#about')}
+              component='a'
+              variant='h6'
+              className={classes.links}
+            >
               About
             </Typography>
-            <Typography href='#contact' component='a' variant='h6' className={classes.links}>
+            <Typography
+              onClick={scrollToElement('#contact')}
+              component='a'
+              variant='h6'
+              className={classes.links}
+            >
               Contact
             </Typography>
           </div>

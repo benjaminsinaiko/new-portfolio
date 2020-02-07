@@ -11,7 +11,6 @@ const projectsData = [
       'is a dataViz companion app for the official Fantasy Premier League game. Keep up with your leagues, team, and players.',
     techUsed: 'React JS / Reach Router',
     techDescription:
-      // 'React front-end, with context hooks for state management. Data from the unoffical FPL API.',
       'React with useContext hook for state management. Routing with Reach Router. Data from the unofficial FPL API.',
     packages: ['axios', 'http-proxy-middleware', 'material-ui', 'moment', 'nivo'],
     siteLink: 'https://fpl-tracker.netlify.com/',
@@ -22,7 +21,7 @@ const projectsData = [
     projectName: 'WeGrow',
     projectImg: weGrow,
     projectDescription:
-      'is a plant watering scheduler app. Set and adjust schedules, by plant and days between waterings.',
+      'is a plant watering scheduler app. View plants and their schedules, adjust as needed, never  miss a watering day  again.',
     techUsed: 'React JS / Material-UI',
     techDescription:
       'React with context hooks for state management. Default plant Data seeded, users can adjust watering dates and times.',

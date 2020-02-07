@@ -1,31 +1,36 @@
 import React from 'react';
-import { useSpring, animated, config } from 'react-spring';
+import Particles from 'react-particles-js';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import orange from '@material-ui/core/colors/orange';
 
 import scrollTo from '../utils/scrollTo';
-const FULL_COLOR = orange[200];
-const BIG_COLOR = orange[300];
-const SMALL_COLOR = orange[900];
+import particlesConfig from '../data/particlesConfig';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
+    position: 'relative',
     backgroundColor: '#282c34',
+    width: '100vw',
     height: '100vh',
-    paddingLeft: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
   },
-  introText: {
+  particlesBackground: {
     width: '100%',
+    height: '100%',
+    zIndex: 5
+  },
+  introText: {
+    position: 'absolute',
+    top: '50%',
+    left: '5%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'end',
     color: '#fff',
-    zIndex: 1,
     '& h1': {
       fontSize: 'calc(2em + 3vw)'
     },
@@ -35,77 +40,52 @@ const useStyles = makeStyles(theme => ({
     },
     '& span': {
       color: orange[600],
+      fontWeight: 'bold',
+      textShadow: '3px 3px 5px #50555e'
+    }
+  },
+  arrowWrapper: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: '95%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    cursor: 'pointer',
+    zIndex: 10,
+    '& h6, svg': {
+      color: orange[600] + 80,
       fontWeight: 'bold'
     }
   },
-  aboutButton: {
-    position: 'absolute',
-    top: '90%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)'
+  arrowIcon: {
+    fontSize: 'calc(2em + 1.25vw)',
+    transform: 'rotate(90deg)'
   }
-}));
+});
 
 export default function Header() {
   const classes = useStyles();
 
   return (
     <div id='header' className={classes.root}>
-      {/* <BoxAnimation /> */}
+      <Particles className={classes.particlesBackground} params={{ ...particlesConfig }} />
       <div className={classes.introText}>
         <Typography variant='h1'>
           Hi, I'm <span>Benjamin</span>
         </Typography>
         <Typography variant='h4'>I like building web things</Typography>
-        <Button onClick={() => scrollTo('#about')} className={classes.aboutButton}>
-          About
-        </Button>
+      </div>
+      <div
+        onClick={scrollTo('#projects')}
+        className={classes.arrowWrapper}
+        aria-label='Navigation to Projects'
+      >
+        <Typography variant='subtitle1'>Projects</Typography>
+        <DoubleArrowIcon className={classes.arrowIcon} />
       </div>
     </div>
   );
-}
-
-function BoxAnimation() {
-  const props = useSpring({
-    from: {
-      left: '0%',
-      top: '0%',
-      width: '0%',
-      height: '0%',
-      background: FULL_COLOR,
-      opacity: 0.4
-    },
-    to: async next => {
-      await next({
-        left: '0%',
-        top: '0%',
-        width: '100%',
-        height: '100%',
-        background: FULL_COLOR
-      });
-      await next({
-        left: '90%',
-        top: '90%',
-        height: '10%',
-        background: SMALL_COLOR
-      });
-      await next({ left: '0%', width: '100%', background: BIG_COLOR });
-      await next({ width: '10%', background: SMALL_COLOR });
-      await next({ top: '50%', height: '50%', background: BIG_COLOR });
-      await next({ height: '10%', background: SMALL_COLOR });
-      await next({ width: '100%', background: BIG_COLOR });
-      await next({ left: '90%', width: '10%', background: SMALL_COLOR });
-      await next({ top: '0%', height: '60%', background: BIG_COLOR });
-      await next({ height: '10%', background: SMALL_COLOR });
-      await next({ left: '0%', width: '100%', background: BIG_COLOR });
-      await next({ width: '10%', background: SMALL_COLOR });
-      await next({ height: '55%', background: BIG_COLOR });
-      await next({ top: '45%', height: '10%', background: SMALL_COLOR });
-      await next({ width: '55%', background: BIG_COLOR });
-      await next({ left: '45%', width: '10%', background: SMALL_COLOR });
-      await next({ left: '50%', top: '50%', width: '0%', height: '0%', background: FULL_COLOR });
-    },
-    config: config.slow
-  });
-  return <animated.div style={{ ...props, position: 'absolute' }} />;
 }

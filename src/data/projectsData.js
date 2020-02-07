@@ -2,7 +2,7 @@ import colorsApp from '../img/projectImgs/myPalettes_mockup.jpg';
 import fplTracker from '../img/projectImgs/fplTracker_mockup.jpg';
 import weGrow from '../img/projectImgs/weGrow_mockup.jpg';
 
-const projectsData = [
+export default [
   {
     id: 1,
     projectName: 'FPL Tracker',
@@ -50,5 +50,3 @@ const projectsData = [
     repoLink: 'https://github.com/benjaminsinaiko/colors-app'
   }
 ];
-
-export default projectsData;

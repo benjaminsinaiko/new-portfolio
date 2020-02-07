@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,7 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import PDFIcon from '@material-ui/icons/PictureAsPdf';
 import DescriptionIcon from '@material-ui/icons/Description';
 import WorkIcon from '@material-ui/icons/Work';
@@ -18,6 +19,7 @@ import AffilateIcon from '@material-ui/icons/GroupWork';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 
+import resumeLinks from '../data/resumeLinks';
 import avatarPhoto from '../img/benjamin.jpg';
 import mercuriaLogo from '../img/aboutLogos/mercuriaLogo.jpg';
 import venuLogo from '../img/aboutLogos/venuLogo.png';
@@ -96,6 +98,17 @@ const useStyles = makeStyles(theme => ({
   iframe: {
     width: '100%',
     height: '100%'
+  },
+  downloadWrapper: {
+    position: 'relative'
+  },
+  downloadProgress: {
+    color: '#fff',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12
   },
   iconList: {
     paddingTop: theme.spacing(2),
@@ -233,6 +246,8 @@ function IconListItem({ logo, primary, secondary, link }) {
 function ResumeModal() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const timer = useRef();
 
   const handleOpen = () => {
     setOpen(true);
@@ -240,6 +255,21 @@ function ResumeModal() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const handleClickDownload = () => {
+    if (!loading) {
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -266,7 +296,7 @@ function ResumeModal() {
           <iframe
             className={classes.iframe}
             title='resume'
-            src='https://docs.google.com/document/d/e/2PACX-1vRcwDh5jr2kyegqyAFw-L7-pbSkScm-_nypwWvQRUarhGokKYQ04Xw784IdNtlc9RGn2F1dTs_7MN9i/pub?embedded=true'
+            src={resumeLinks.iframe}
             style={{ padding: 0, border: 'none' }}
           ></iframe>
         </DialogContent>
@@ -274,15 +304,18 @@ function ResumeModal() {
           <Button onClick={handleClose} color='primary'>
             Close
           </Button>
-          <Button
-            disabled
-            variant='contained'
-            onClick={handleClose}
-            color='primary'
-            startIcon={<PDFIcon />}
-          >
-            Download
-          </Button>
+          <div className={classes.downloadWrapper}>
+            <Button
+              onClick={handleClickDownload}
+              href={resumeLinks.download}
+              variant='contained'
+              color='primary'
+              startIcon={<PDFIcon />}
+            >
+              Download
+            </Button>
+            {loading && <CircularProgress size={24} className={classes.downloadProgress} />}
+          </div>
         </DialogActions>
       </Dialog>
     </div>

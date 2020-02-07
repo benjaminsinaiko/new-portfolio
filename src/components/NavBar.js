@@ -57,10 +57,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const scrollToElement = el => () => {
-  scrollTo(el);
-};
-
 export default function NavBar() {
   const classes = useStyles();
 
@@ -68,7 +64,7 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar className={classes.toolbar}>
-          <div onClick={scrollToElement('#header')} className={classes.titleWrapper}>
+          <div onClick={scrollTo('#header')} className={classes.titleWrapper}>
             <IconButton
               component='a'
               edge='start'
@@ -85,7 +81,7 @@ export default function NavBar() {
 
           <div className={classes.sections}>
             <Typography
-              onClick={scrollToElement('#projects')}
+              onClick={scrollTo('#projects')}
               component='a'
               variant='h6'
               className={classes.links}
@@ -93,7 +89,7 @@ export default function NavBar() {
               Projects
             </Typography>
             <Typography
-              onClick={scrollToElement('#about')}
+              onClick={scrollTo('#about')}
               component='a'
               variant='h6'
               className={classes.links}
@@ -101,7 +97,7 @@ export default function NavBar() {
               About
             </Typography>
             <Typography
-              onClick={scrollToElement('#contact')}
+              onClick={scrollTo('#contact')}
               component='a'
               variant='h6'
               className={classes.links}

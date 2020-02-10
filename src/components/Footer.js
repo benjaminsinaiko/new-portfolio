@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import VisibilitySensor from 'react-visibility-sensor';
 import { makeStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -57,7 +59,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     color: BLUE_GREY,
     '& h2': {
-      fontSize: '4em'
+      fontFamily: '"Open Sans", sans-serif',
+      fontSize: '4em',
+      letterSpacing: '.2rem'
     },
     [theme.breakpoints.down('xs')]: {
       '& h2': {
@@ -134,51 +138,62 @@ const useStyles = makeStyles(theme => ({
 
 export default function About() {
   const classes = useStyles();
+  const [visible, setVisible] = useState(false);
+
+  const handleIsVisible = isVisible => {
+    if (!visible && isVisible) {
+      setVisible(true);
+    }
+  };
 
   return (
-    <div id='contact' className={classes.root}>
-      <div className={classes.topShapeDiv}></div>
-      <div className={classes.contact}>
-        <div className={classes.title}>
-          <Typography variant='h2' align='center'>
-            Say hi!
-          </Typography>
+    <VisibilitySensor onChange={handleIsVisible}>
+      <div id='contact' className={classes.root}>
+        <div className={classes.topShapeDiv}></div>
+        <div className={classes.contact}>
+          <div className={classes.title}>
+            <Fade in={visible} timeout={1000} style={{ transitionDelay: 500 }}>
+              <Typography variant='h2' align='center'>
+                Say hi!
+              </Typography>
+            </Fade>
+          </div>
+          <div className={classes.email}>
+            <a href='mailto:bsinaiko@gmail.com' target='_blank' rel='noopener noreferrer'>
+              <IconButton>
+                <MailIcon />
+              </IconButton>
+              <Button>bsinaiko@gmail.com</Button>
+            </a>
+          </div>
         </div>
-        <div className={classes.email}>
-          <a href='mailto:bsinaiko@gmail.com' target='_blank' rel='noopener noreferrer'>
-            <IconButton>
-              <MailIcon />
-            </IconButton>
-            <Button>bsinaiko@gmail.com</Button>
-          </a>
-        </div>
-      </div>
 
-      <div className={classes.social}>
-        <div className={classes.name}>
-          <Typography variant='subtitle2'>
-            Benjamin Sinaiko{' '}
-            <span>
-              <LocationIcon />
-            </span>{' '}
-            Chicago
-          </Typography>
-        </div>
-        <div className={classes.socialIcons}>
-          <IconButton target='_blank' href='https://www.linkedin.com/in/benjaminsinaiko/'>
-            <LinkedInIcon />
-          </IconButton>
-          <IconButton target='_blank' href='https://github.com/benjaminsinaiko/'>
-            <GithubIcon />
-          </IconButton>
-          <IconButton target='_blank' href='https://twitter.com/huckabeej/'>
-            <TwitterIcon />
-          </IconButton>
-          <IconButton target='_blank' href='https://www.facebook.com/bsinaiko/'>
-            <FacebookIcon />
-          </IconButton>
+        <div className={classes.social}>
+          <div className={classes.name}>
+            <Typography variant='subtitle2'>
+              Benjamin Sinaiko{' '}
+              <span>
+                <LocationIcon />
+              </span>{' '}
+              Chicago
+            </Typography>
+          </div>
+          <div className={classes.socialIcons}>
+            <IconButton target='_blank' href='https://www.linkedin.com/in/benjaminsinaiko/'>
+              <LinkedInIcon />
+            </IconButton>
+            <IconButton target='_blank' href='https://github.com/benjaminsinaiko/'>
+              <GithubIcon />
+            </IconButton>
+            <IconButton target='_blank' href='https://twitter.com/huckabeej/'>
+              <TwitterIcon />
+            </IconButton>
+            <IconButton target='_blank' href='https://www.facebook.com/bsinaiko/'>
+              <FacebookIcon />
+            </IconButton>
+          </div>
         </div>
       </div>
-    </div>
+    </VisibilitySensor>
   );
 }

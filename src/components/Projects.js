@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import VisibilitySensor from 'react-visibility-sensor';
 import { makeStyles } from '@material-ui/core/styles';
+import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Divider from '@material-ui/core/Divider';
@@ -169,25 +171,31 @@ const useStyles = makeStyles(theme => ({
 
 export default function Projects() {
   const classes = useStyles();
+  const [isVisible, setIsVisible] = useState(false);
+  console.log('isVisble', isVisible);
 
   return (
-    <div id='projects' className={classes.root}>
-      <div className={classes.header}>
-        <Typography variant='h3' className={classes.headerTitle} gutterBottom>
-          Recent Projects
-        </Typography>
-        <Divider />
+    <VisibilitySensor onChange={isVisible => (isVisible ? setIsVisible(isVisible) : null)}>
+      <div id='projects' className={classes.root}>
+        <div className={classes.header}>
+          <Typography variant='h3' className={classes.headerTitle} gutterBottom>
+            Recent Projects
+          </Typography>
+          <Divider />
+        </div>
+        <div className={classes.projectList}>
+          {projectsData.map((project, i) => (
+            <ProjectCard key={project.id} {...project} isVisible={isVisible} index={i} />
+          ))}
+        </div>
       </div>
-      <div className={classes.projectList}>
-        {projectsData.map(project => (
-          <ProjectCard key={project.id} {...project} />
-        ))}
-      </div>
-    </div>
+    </VisibilitySensor>
   );
 }
 
 function ProjectCard({
+  isVisible,
+  index,
   projectName,
   projectImg,
   projectDescription,
@@ -200,58 +208,60 @@ function ProjectCard({
   const classes = useStyles();
 
   return (
-    <Card className={classes.cardRoot}>
-      <CardContent style={{ position: 'relative' }}>
-        <CardMedia
-          className={classes.cardMedia}
-          image={projectImg}
-          title={`${projectName} mockup`}
-        />
+    <Zoom in={isVisible} timeout={500} style={{ transitionDelay: `${index * 300}ms` }}>
+      <Card className={classes.cardRoot}>
+        <CardContent style={{ position: 'relative' }}>
+          <CardMedia
+            className={classes.cardMedia}
+            image={projectImg}
+            title={`${projectName} mockup`}
+          />
 
-        <div className={classes.overlay}>
-          <div className={classes.overlayContainer}>
-            <Typography variant='h4' className={classes.overlayTitle}>
-              {projectName}
-            </Typography>
-            <div className={classes.overlayText}>
-              <Typography variant='subtitle1' align='center' gutterBottom>
-                {techUsed}
+          <div className={classes.overlay}>
+            <div className={classes.overlayContainer}>
+              <Typography variant='h4' className={classes.overlayTitle}>
+                {projectName}
               </Typography>
-              <Typography variant='body1'>{techDescription}</Typography>
-            </div>
-            <div className={classes.overlayPackages}>
-              <Typography variant='subtitle2'>other packages: </Typography>
-              <List dense>
-                {packages.length &&
-                  packages.map(packageName => (
-                    <ListItem key={packageName}>
-                      <Typography color='secondary' variant='caption'>
-                        {packageName}
-                      </Typography>
-                    </ListItem>
-                  ))}
-              </List>
+              <div className={classes.overlayText}>
+                <Typography variant='subtitle1' align='center' gutterBottom>
+                  {techUsed}
+                </Typography>
+                <Typography variant='body1'>{techDescription}</Typography>
+              </div>
+              <div className={classes.overlayPackages}>
+                <Typography variant='subtitle2'>other packages: </Typography>
+                <List dense>
+                  {packages.length &&
+                    packages.map(packageName => (
+                      <ListItem key={packageName}>
+                        <Typography color='secondary' variant='caption'>
+                          {packageName}
+                        </Typography>
+                      </ListItem>
+                    ))}
+                </List>
+              </div>
             </div>
           </div>
-        </div>
-        <Typography className={classes.contentTitle} variant='h5' component='h2'>
-          {projectName}
-        </Typography>
-      </CardContent>
+          <Typography className={classes.contentTitle} variant='h5' component='h2'>
+            {projectName}
+          </Typography>
+        </CardContent>
 
-      <CardContent>
-        <Typography variant='body2' className={classes.contentText}>
-          <span>{projectName} </span> {projectDescription}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.actionLinks}>
-        <Button href={siteLink} target='_blank' startIcon={<OpenInBrowserIcon />}>
-          Live Site
-        </Button>
-        <Button href={repoLink} target='_blank' startIcon={<GitHubIcon />}>
-          Code Repo
-        </Button>
-      </CardActions>
-    </Card>
+        <CardContent>
+          <Typography variant='body2' className={classes.contentText}>
+            <span>{projectName} </span> {projectDescription}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.actionLinks}>
+          <Button href={siteLink} target='_blank' startIcon={<OpenInBrowserIcon />}>
+            Live Site
+          </Button>
+          <Button href={repoLink} target='_blank' startIcon={<GitHubIcon />}>
+            Code Repo
+          </Button>
+        </CardActions>
+      </Card>
+    </Zoom>
   );
 }

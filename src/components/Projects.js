@@ -171,11 +171,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function Projects() {
   const classes = useStyles();
-  const [isVisible, setIsVisible] = useState(false);
-  console.log('isVisble', isVisible);
+  const [visible, setVisible] = useState(false);
+
+  const handleIsVisible = isVisible => {
+    if (!visible && isVisible) {
+      setVisible(true);
+    }
+  };
 
   return (
-    <VisibilitySensor onChange={isVisible => (isVisible ? setIsVisible(isVisible) : null)}>
+    <VisibilitySensor onChange={handleIsVisible}>
       <div id='projects' className={classes.root}>
         <div className={classes.header}>
           <Typography variant='h3' className={classes.headerTitle} gutterBottom>
@@ -185,7 +190,7 @@ export default function Projects() {
         </div>
         <div className={classes.projectList}>
           {projectsData.map((project, i) => (
-            <ProjectCard key={project.id} {...project} isVisible={isVisible} index={i} />
+            <ProjectCard key={project.id} {...project} isVisible={visible} index={i} />
           ))}
         </div>
       </div>

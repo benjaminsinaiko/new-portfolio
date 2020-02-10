@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4),
     paddingTop: 78,
-    minHeight: 900,
+    minHeight: 700,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

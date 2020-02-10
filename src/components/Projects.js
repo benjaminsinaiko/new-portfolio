@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import VisibilitySensor from 'react-visibility-sensor';
+import VizSensor from 'react-visibility-sensor';
 import { makeStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%23282c34' fill-opacity='0.3'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E")`,
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
-    minHeight: 800,
+    height: 800,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -180,26 +180,26 @@ export default function Projects() {
   };
 
   return (
-    <VisibilitySensor onChange={handleIsVisible}>
-      <div id='projects' className={classes.root}>
-        <div className={classes.header}>
-          <Typography variant='h3' className={classes.headerTitle} gutterBottom>
-            Recent Projects
-          </Typography>
-          <Divider />
-        </div>
+    <div id='projects' className={classes.root}>
+      <div className={classes.header}>
+        <Typography variant='h3' className={classes.headerTitle} gutterBottom>
+          Recent Projects
+        </Typography>
+        <Divider />
+      </div>
+      <VizSensor onChange={handleIsVisible}>
         <div className={classes.projectList}>
           {projectsData.map((project, i) => (
-            <ProjectCard key={project.id} {...project} isVisible={visible} index={i} />
+            <ProjectCard key={project.id} {...project} index={i} visible={visible} />
           ))}
         </div>
-      </div>
-    </VisibilitySensor>
+      </VizSensor>
+    </div>
   );
 }
 
 function ProjectCard({
-  isVisible,
+  visible,
   index,
   projectName,
   projectImg,
@@ -213,7 +213,7 @@ function ProjectCard({
   const classes = useStyles();
 
   return (
-    <Zoom in={isVisible} timeout={500} style={{ transitionDelay: `${index * 300}ms` }}>
+    <Zoom in={visible} timeout={500} style={{ transitionDelay: `${index * 300}ms` }}>
       <Card className={classes.cardRoot}>
         <CardContent style={{ position: 'relative' }}>
           <CardMedia

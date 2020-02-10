@@ -152,7 +152,7 @@ export default function About() {
         <div className={classes.topShapeDiv}></div>
         <div className={classes.contact}>
           <div className={classes.title}>
-            <Fade in={visible} timeout={1000} style={{ transitionDelay: 500 }}>
+            <Fade in={visible} timeout={1000} style={{ transitionDelay: 300 }}>
               <Typography variant='h2' align='center'>
                 Say hi!
               </Typography>
